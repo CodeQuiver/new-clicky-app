@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 
-/* Square- dumb component */
+//construct Square
+function Square() {
 
-/* END Square- dumb component */
+        return (
+            <button>
+                X
+            </button>
+        )
+}
+//create array of state objects
+//call square constructor with array of state objects
+//render each square to DOM
 
 
 class Board extends Component {
@@ -10,6 +19,7 @@ class Board extends Component {
     return (
       <section className="Board component-wrapper">
         This is the Board Component!
+        <Square />
       </section>
     );
   }
