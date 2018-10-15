@@ -12,3 +12,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+
+/* CLICKY-GAME CUSTOM THEME CODE */
+section {
+  margin: 1em;
+  padding: 1em;  
+}
+
+  /*giving each component borders to better visualize while working on it*/
+  section.Game {
+    border: 1px solid slateblue;
+  }
+
+  section.Board {
+    border: 1px solid magenta;
+  }
+
+/* END CLICKY-GAME CUSTOM THEME CODE */

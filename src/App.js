@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
 import './App.css';
+import Game from './components/Game.js';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          {/* <img src="" className="App-logo" alt="logo" /> */}
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-         
+          <h1>
+            The Clicky Game!
+          </h1>
+          {/* <p>
+          Instruction text here.
+          </p>        */}
         </header>
+        
+        <Game />
+
       </div>
     );
   }
