@@ -8,7 +8,7 @@ class Square extends Component {
     return (
       <button
         className="square"
-        onClick={() => {alert("Clicked Square")}} //TODO replace with a handleclick function
+        onClick={() => this.props.onClick()} //TODO replace with a handleclick function
       >
         <img src={this.props.value.imgValue} alt="headshot of smiling person" width="160px" height="auto" />
       </button>
@@ -81,13 +81,16 @@ class Board extends Component {
 
   //function to render the squares in the board
   renderSquare = (i) => {
-    return <Square value={this.state.squares[i]} id={i} key={i} />;
+    return <Square value={this.state.squares[i]} onClick={() => this.handleClick(i)} id={i} key={i} />;
   }
     //note- key and id are separate because key has restrictions on its usage because React uses it for reference, and I want to use id for myself to track the place in the array this square maps to. IIRC a component can't inquire about its own key.
   // END render squares function
 
 
   //handleClick function
+  handleClick(i) {
+    alert("handleClick Clicked!!!");
+  }
     //onClick
       //first, check if this.props.value.isClicked === true/false
         //if true, lose the game- run gameLoss function
