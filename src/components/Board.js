@@ -9,7 +9,7 @@ class Square extends React.Component {
         className="square"
         onClick={() => this.setState({isClicked:true})} //TODO replace with a handleclick function
       >
-        <img src={this.props.value.imgValue} alt="headshot of smiling person" width="150px" height="auto" />
+        <img src={this.props.value.imgValue} alt="headshot of smiling person" width="160px" height="auto" />
       </button>
     );
   }
@@ -34,6 +34,42 @@ class Board extends Component {
         {
           imgValue: 'https://randomuser.me/api/portraits/men/81.jpg',
           isClicked: false
+        },
+        {
+          imgValue: 'https://randomuser.me/api/portraits/women/21.jpg',
+          isClicked: false
+        },
+        {
+          imgValue: 'https://randomuser.me/api/portraits/women/81.jpg',
+          isClicked: false
+        },
+        {
+          imgValue: 'https://randomuser.me/api/portraits/men/1.jpg',
+          isClicked: false
+        },
+        {
+          imgValue: 'https://randomuser.me/api/portraits/men/66.jpg',
+          isClicked: false
+        },
+        {
+          imgValue: 'https://randomuser.me/api/portraits/women/2.jpg',
+          isClicked: false
+        },
+        {
+          imgValue: 'https://randomuser.me/api/portraits/women/22.jpg',
+          isClicked: false
+        },
+        {
+          imgValue: 'https://randomuser.me/api/portraits/men/22.jpg',
+          isClicked: false
+        },
+        {
+          imgValue: 'https://randomuser.me/api/portraits/men/9.jpg',
+          isClicked: false
+        },
+        {
+          imgValue: 'https://randomuser.me/api/portraits/women/54.jpg',
+          isClicked: false
         }
       ]
     };
@@ -51,17 +87,20 @@ class Board extends Component {
           {this.renderSquare(0)}
           {this.renderSquare(1)}
           {this.renderSquare(2)}
-        </div>
-        {/* <div className="board-row">
           {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
         </div>
         <div className="board-row">
+          {this.renderSquare(4)}
+          {this.renderSquare(5)}
           {this.renderSquare(6)}
           {this.renderSquare(7)}
+        </div>
+        <div className="board-row">
           {this.renderSquare(8)}
-        </div> */}
+          {this.renderSquare(9)}
+          {this.renderSquare(10)}
+          {this.renderSquare(11)}
+        </div>
       </section>
     );
   }
