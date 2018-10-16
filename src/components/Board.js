@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
 //construct Square
-class Square extends React.Component {
+class Square extends Component {
 
-  render(props) {
+  render() {
     return (
       <button
         className="square"
-        onClick={() => this.setState({isClicked:true})} //TODO replace with a handleclick function
+        onClick={() => alert("Clicked")} //TODO replace with a handleclick function
       >
         <img src={this.props.value.imgValue} alt="headshot of smiling person" width="160px" height="auto" />
       </button>
@@ -22,6 +22,7 @@ class Board extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      score: 0,
       squares: [
         {
           imgValue: 'https://randomuser.me/api/portraits/men/54.jpg',
@@ -78,8 +79,8 @@ class Board extends Component {
 
 
   //function to render the squares in the board
-  renderSquare(i) {
-    return <Square value={this.state.squares[i]} id={i} key={i} />;
+  renderSquare = (i) => {
+    return <Square value={this.state.squares[i]} onClick={() => console.log("clicked me!")} id={i} key={i} />;
   }
     //note- key and id are separate because key has restrictions on its usage because React uses it for reference, and I want to use id for myself to track the place in the array this square maps to. IIRC a component can't inquire about its own key.
   // END render squares function
@@ -105,9 +106,16 @@ class Board extends Component {
   //END shuffleArray helper function
 
   //incrementScoreCounter helper function
-    //1- update the counter to add 1 to score
-    //2- if new counter value is 12, alert that you've won, you played a perfect game
-    //else nothing
+  incrementScoreCounter = (currentScore) => {
+    let newScore = currentScore + 1;
+    if (newScore >= 12) {
+      alert("Congratulations! You have played a perfect game and clicked every picture only once! You won the game!");
+      newScore = 0;
+      //call shuffleArray function
+    }
+    this.setState({score:newScore});
+  }
+
   //END incrementScoreCounter helper function
 
   //gameLoss helper function
@@ -120,6 +128,7 @@ class Board extends Component {
     return (
       <section className="Board component-wrapper">
         This is the Board Component!
+        <h2>Current Score: {this.state.score} </h2>
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
