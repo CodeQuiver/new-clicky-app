@@ -74,10 +74,47 @@ class Board extends Component {
       ]
     };
   }
+  // END constructor
 
+
+  //function to render the squares in the board
   renderSquare(i) {
-    return <Square value={this.state.squares[i]} />;
+    return <Square value={this.state.squares[i]} id={i} key={i} />;
   }
+    //note- key and id are separate because key has restrictions on its usage because React uses it for reference, and I want to use id for myself to track the place in the array this square maps to. IIRC a component can't inquire about its own key.
+  // END render squares function
+
+
+  //handleClick function
+    //onClick
+      //first, check if this.props.value.isClicked === true/false
+        //if true, lose the game- run gameLoss function
+
+        //if false:
+          //1- update the state of the item in the Board (setState) squares[{this.props.id}] (meaning use the id to get the correct index to update in the squares array)
+          //2- shuffle the array with a helper function that accepts an array and returns a new array
+              //(should automatically re-render since this changes the board's state)
+          //3- run incrementScoreCounter helper function
+
+  //END handleclick function
+
+  //shuffleArray helper function
+    //accepts an array
+    //randomly selects one item at a time from that array and pushes it to a new array, using slice to remove it without mutating original
+    //when the entire array has been re-shuffled, returns the new array
+  //END shuffleArray helper function
+
+  //incrementScoreCounter helper function
+    //1- update the counter to add 1 to score
+    //2- if new counter value is 12, alert that you've won, you played a perfect game
+    //else nothing
+  //END incrementScoreCounter helper function
+
+  //gameLoss helper function
+    //alert that you've lost and display final score
+    //reset the game counter to 0
+    //shuffle array again (should automatically re-render since this changes the board's state)
+  //END gameLoss helper function
 
   render() {
     return (
