@@ -2,36 +2,18 @@ import React, { Component } from 'react';
 
 //construct Square
 class Square extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     imgValue: 'https://randomuser.me/api/portraits/men/54.jpg',
-  //     isClicked: false,
-  //   };
-  // }
 
   render(props) {
     return (
       <button
         className="square"
-        onClick={() => this.setState({isClicked:true})} //replace with a handleclick function
+        onClick={() => this.setState({isClicked:true})} //TODO replace with a handleclick function
       >
         <img src={this.props.value.imgValue} alt="headshot of smiling person" width="150px" height="auto" />
       </button>
     );
   }
 }
-// function Square() {
-
-//         return (
-//             <button>
-//                 X
-//             </button>
-//         )
-// }
-//create array of state objects
-//call square constructor with array of state objects
-//render each square to DOM
 
 
 class Board extends Component {
@@ -46,11 +28,11 @@ class Board extends Component {
           isClicked: false
         },
         {
-          imgValue: 'https://randomuser.me/api/portraits/men/54.jpg',
+          imgValue: 'https://randomuser.me/api/portraits/women/9.jpg',
           isClicked: false
         },
         {
-          imgValue: 'https://randomuser.me/api/portraits/men/54.jpg',
+          imgValue: 'https://randomuser.me/api/portraits/men/81.jpg',
           isClicked: false
         }
       ]
