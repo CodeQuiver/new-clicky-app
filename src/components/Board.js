@@ -90,6 +90,11 @@ class Board extends Component {
   //handleClick function
   handleClick(i) {
     alert("handleClick Clicked!!!");
+    if (this.props.value.isClicked === true) {
+      alert("that was clicked before- gameloss function will now be triggered");
+      //run gameloss function
+      this.gameLoss();
+    }
   }
     //onClick
       //first, check if this.props.value.isClicked === true/false
@@ -109,9 +114,10 @@ class Board extends Component {
     //when the entire array has been re-shuffled, returns the new array
   //END shuffleArray helper function
 
+
   //incrementScoreCounter helper function
-  incrementScoreCounter = (currentScore) => {
-    let newScore = currentScore + 1;
+  incrementScoreCounter = () => {
+    let newScore = this.state.score + 1;
     if (newScore >= 12) {
       alert("Congratulations! You have played a perfect game and clicked every picture only once! You won the game!");
       newScore = 0;
@@ -119,14 +125,21 @@ class Board extends Component {
     }
     this.setState({score:newScore});
   }
-
   //END incrementScoreCounter helper function
 
+
   //gameLoss helper function
+  gameLoss = () => {
     //alert that you've lost and display final score
-    //reset the game counter to 0
-    //shuffle array again (should automatically re-render since this changes the board's state)
+    alert("Sorry, you clicked that before. You lost the game. Final score: " + this.state.score);
+    //reset the score counter to 0
+    this.setState({score:0});
+
+    //TODO-call shuffleArray function
+  }
   //END gameLoss helper function
+
+
 
   render() {
     return (
