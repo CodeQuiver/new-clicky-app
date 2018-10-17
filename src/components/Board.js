@@ -88,24 +88,31 @@ class Board extends Component {
 
 
   //handleClick function
-  handleClick(i) {
+  handleClick = (i) => {
     alert("handleClick Clicked!!!");
-    if (this.props.value.isClicked === true) {
+    //first, check if this.props.value.isClicked === true/false
+    //if true, lose the game- run gameLoss function
+    if (this.state.squares[i].isClicked === true) {
       alert("that was clicked before- gameloss function will now be triggered");
       //run gameloss function
       this.gameLoss();
+    } else {
+      //1- update the state of the item in the Board (setState) squares[{this.props.id}] (meaning use the id to get the correct index to update in the squares array)
+      // this.setState.squares[i]({isClicked: true});
+      const newSquaresArray = this.state.squares.slice();
+      newSquaresArray[i].isClicked = true;
+      this.setState({squares: newSquaresArray});
+      
+      //2- shuffle the array with a helper function that accepts an array and returns a new array
+          //(should automatically re-render since this changes the board's state)
+
+      //3- run incrementScoreCounter helper function
+      this.incrementScoreCounter();
     }
   }
-    //onClick
-      //first, check if this.props.value.isClicked === true/false
-        //if true, lose the game- run gameLoss function
+    
 
-        //if false:
-          //1- update the state of the item in the Board (setState) squares[{this.props.id}] (meaning use the id to get the correct index to update in the squares array)
-          //2- shuffle the array with a helper function that accepts an array and returns a new array
-              //(should automatically re-render since this changes the board's state)
-          //3- run incrementScoreCounter helper function
-
+        
   //END handleclick function
 
   //shuffleArray helper function
