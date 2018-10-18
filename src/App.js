@@ -10,9 +10,7 @@ class App extends Component {
           <h1>
             The Clicky Game!
           </h1>
-          {/* <p>
-          Instruction text here.
-          </p>        */}
+
         </header>
         
         <Game />

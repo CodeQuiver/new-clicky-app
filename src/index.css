@@ -21,9 +21,9 @@ section {
 }
 
   /*giving each component borders to better visualize while working on it*/
-  section.Game {
+  /* section.Game {
     border: 1px solid slateblue;
-  }
+  } */
 
   section.Board {
     border: 1px solid magenta;

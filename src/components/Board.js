@@ -116,11 +116,11 @@ class Board extends Component {
   
   //handleClick function
   handleClick = (i) => {
-    alert("handleClick Clicked!!!");
+    // alert("handleClick Clicked!!!");
     //first, check if this.props.value.isClicked === true/false
     //if true, lose the game- run gameLoss function
     if (this.state.squares[i].isClicked === true) {
-      alert("that was clicked before- gameloss function will now be triggered");
+      // alert("that was clicked before- gameloss function will now be triggered");
       //run gameloss function
       this.gameLoss();
     } else {
@@ -143,17 +143,19 @@ class Board extends Component {
 
 
 
-
-
   //incrementScoreCounter helper function
   incrementScoreCounter = () => {
     let newScore = this.state.score + 1;
+    this.setState({score:newScore});
+
+    //check for win condition- if score is 12, give alert and reset game
     if (newScore >= 12) {
       alert("Congratulations! You have played a perfect game and clicked every picture only once! You won the game!");
-      newScore = 0;
-      //call shuffleArray function
+
+      //run game reset function
+      this.resetGame();
     }
-    this.setState({score:newScore});
+
   }
   //END incrementScoreCounter helper function
 
@@ -162,17 +164,9 @@ class Board extends Component {
   gameLoss = () => {
     //alert that you've lost and display final score
     alert("Sorry, you clicked that before. You lost the game. Final score: " + this.state.score);
-    //reset the score counter to 0
-    this.setState({score:0});
-    //reset all states of isClicked to "false"
-    // let newSquaresArray = this.state.squares.slice();
-    // for (let i = 0; i < newSquaresArray.length; i++) {
-    //   newSquaresArray[i].isClicked = false;
-    // }
-    // // console.log("new Squares Array is: " + JSON.stringify(newSquaresArray));
-    // this.setState({squares: newSquaresArray});
+    
+    //run game reset function
     this.resetGame();
-
   }
   //END gameLoss helper function
 
@@ -207,7 +201,7 @@ class Board extends Component {
   render() {
     return (
       <section className="Board component-wrapper">
-        This is the Board Component!
+        {/* This is the Board Component! */}
         <h2>Current Score: {this.state.score} </h2>
         <div className="board-row">
           {this.renderSquare(0)}
