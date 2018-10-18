@@ -81,14 +81,47 @@ class Board extends Component {
 
   //function to render the squares in the board
   renderSquare = (i) => {
-    return <Square value={this.state.squares[i]} onClick={() => this.handleClick(i)} id={i} key={i} />;
+    return <Square value={this.state.squares[i]} onClick={() => this.handleClick(i, this.shuffleArray)} id={i} key={i} />;
   }
     //note- key and id are separate because key has restrictions on its usage because React uses it for reference, and I want to use id for myself to track the place in the array this square maps to. IIRC a component can't inquire about its own key.
   // END render squares function
 
 
+    //shuffleArray helper function
+    shuffleArray = (array) => {
+      // makes a copy (startingArray) with slice()
+      let startingArray = array.slice();
+      let endingArray = [];
+      console.log("startingArray == " + startingArray.toString());
+      for (let i = 0; i < array.length; i++) {
+        // let innerArray = startingArray; //did this to prevent odd counting of iterations that I was getting from directly changing startingArray
+        console.log("i ========================================== " + i.toString());
+        // randomly selects an array index to manipulate
+        let currentIndex = Math.floor(Math.random() * (startingArray.length));
+        console.log("currentIndex == " + currentIndex.toString());
+        console.log("endingArray (before) == " + endingArray.toString());
+        // pushes it to endingArray
+        endingArray.push(startingArray[currentIndex])
+        console.log("endingArray (after) == " + endingArray.toString());
+        // splices the currentIndex entry from the startingArray
+        console.log("startingArray (before) == " + startingArray.toString());
+        startingArray.splice(currentIndex, 1);
+        console.log("startingArray (after) == " + startingArray.toString());
+      }
+      console.log("endingArray (at the end of the loop) " + endingArray.toString());
+      return endingArray;
+    };
+  
+  
+  
+        
+        // then deletes that item from the array using splice startingArray.splice(i, 1); syntax: array.splice(index, howmany)
+      //when the entire array has been re-shuffled, returns the new array
+    //END shuffleArray helper function
+
   //handleClick function
-  handleClick = (i) => {
+  handleClick = (i, shuffleArray) => {
+    shuffleArray([1,2,3,4,5,6,7]);
     alert("handleClick Clicked!!!");
     //first, check if this.props.value.isClicked === true/false
     //if true, lose the game- run gameLoss function
@@ -99,7 +132,7 @@ class Board extends Component {
     } else {
       //1- update the state of the item in the Board (setState) squares[{this.props.id}] (meaning use the id to get the correct index to update in the squares array)
       // this.setState.squares[i]({isClicked: true});
-      const newSquaresArray = this.state.squares.slice();
+      let newSquaresArray = this.state.squares.slice();
       newSquaresArray[i].isClicked = true;
       this.setState({squares: newSquaresArray});
       
@@ -110,16 +143,10 @@ class Board extends Component {
       this.incrementScoreCounter();
     }
   }
-    
-
-        
   //END handleclick function
 
-  //shuffleArray helper function
-    //accepts an array
-    //randomly selects one item at a time from that array and pushes it to a new array, using slice to remove it without mutating original
-    //when the entire array has been re-shuffled, returns the new array
-  //END shuffleArray helper function
+
+
 
 
   //incrementScoreCounter helper function
@@ -141,10 +168,40 @@ class Board extends Component {
     alert("Sorry, you clicked that before. You lost the game. Final score: " + this.state.score);
     //reset the score counter to 0
     this.setState({score:0});
+    //reset all states of isClicked to "false"
+    // let newSquaresArray = this.state.squares.slice();
+    // for (let i = 0; i < newSquaresArray.length; i++) {
+    //   newSquaresArray[i].isClicked = false;
+    // }
+    // // console.log("new Squares Array is: " + JSON.stringify(newSquaresArray));
+    // this.setState({squares: newSquaresArray});
+    this.resetGame();
+
+  }
+  //END gameLoss helper function
+
+  //RESET helper function
+  resetGame = () => {
+    //reset the score counter to 0
+    this.setState({score:0});
+
+    //reset all states of isClicked to "false"
+      //first, copies the squares state array
+    let newSquaresArray = this.state.squares.slice();
+
+      //then updates the array values of the new array
+    for (let i = 0; i < newSquaresArray.length; i++) {
+      newSquaresArray[i].isClicked = false;
+    }
+    // console.log("new Squares Array is: " + JSON.stringify(newSquaresArray));
+      //replaces old state of squares with the new array- this is done this way in order to not mutate the original data
+    this.setState({squares: newSquaresArray});
 
     //TODO-call shuffleArray function
   }
-  //END gameLoss helper function
+  //END RESET helper function
+
+
 
 
 
